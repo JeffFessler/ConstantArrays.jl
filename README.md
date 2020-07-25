@@ -26,9 +26,15 @@ At the Julia REPL execute:
 `using ConstantArrays`,
 then type `?ConstantArray` and press enter to get help.
 
-`x = ConstantArray(7, (4,6))` makes a "lazy" constant array
-equivalent to `fill(7, (4,6))` but essentially requires only
-the memory need to store the value `7` and the dimensions `(4,6)`.
+Primary usage example:
+```
+x = ConstantArray(42, (5,7))
+```
+makes a "lazy" constant "array"
+functionally equivalent to `fill(42, (5,7))`
+but essentially requires only
+the memory need to store a struct
+with the value `42` and the dimensions `(5,7)`.
 
 The motivating use of this type
 is for the "masks" used in tomographic image reconstruction
@@ -42,10 +48,14 @@ for this purpose.
 The idea here is somewhat analogous
 to the `UniformScaling` type (`I`)
 in the `LinearAlgebra` package.
-That `I` is non-essential
+Arguably that `I` is non-essential
 because one could accomplish something similar
 using `Diagonal(ones(N))`
 but `I` requires much less memory.
+Likewise,
+arguably `ConstantArray` is non-essential, but
+`ConstantArray(true, (100,100,100))` uses about a million times
+less memory than `trues(100,100,100)`.
 
 Developed by Jeff Fessler at the University of Michigan,
 with some inspiration from
