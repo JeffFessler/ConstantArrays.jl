@@ -29,8 +29,8 @@ ERROR: setindex! not defined for ConstantArray{Int64,2}
 ```
 """
 struct ConstantArray{T,D} <: AbstractArray{T,D}
-	value::T
-	dim::Dims{D}
+    value::T
+    dim::Dims{D}
     ConstantArray(value::T, dim::Dims{D}) where {T,D} =
         new{T, D}(value, dim)
 end
@@ -47,8 +47,8 @@ Base.size(x::ConstantArray, args...) = x.dim[args...]
 Base.copy(x::ConstantArray) = ConstantArray(x.value, x.dim)
 
 Base.@propagate_inbounds function Base.getindex(x::ConstantArray, i::Int)
-	@boundscheck 1 <= i <= prod(x.dim) || throw(BoundsError("$i"))
-	return x.value
+    @boundscheck 1 <= i <= prod(x.dim) || throw(BoundsError("$i"))
+    return x.value
 end
 
 # harder to handle ':' etc. so let Base do it
