@@ -1,9 +1,9 @@
 ConstantArrays.jl
 =============
 
-[![Travis Build Status](https://travis-ci.org/JeffFessler/ConstantArrays.jl.svg?branch=master)](https://travis-ci.org/JeffFessler/ConstantArrays.jl)
-[![codecov.io](http://codecov.io/github/JeffFessler/ConstantArrays.jl/coverage.svg?branch=master)](http://codecov.io/github/JeffFessler/ConstantArrays.jl?branch=master)
-[![Coverage Status](https://coveralls.io/repos/github/JeffFessler/ConstantArrays.jl/badge.svg?branch=master)](https://coveralls.io/github/JeffFessler/ConstantArrays.jl?branch=master)
+[![Build Status][travis-img]][travis-url]
+[![Codecov.io][codecov-img]][codecov-url]
+[![Coveralls][coveralls-img]][coveralls-url]
 
 https://github.com/JeffFessler/ConstantArrays.jl
 
@@ -43,3 +43,12 @@ using `Diagonal(ones(N))`
 but `I` requires much less memory.
 
 Developed by Jeff Fessler at the University of Michigan.
+
+
+<!-- URLs -->
+[travis-img]: https://travis-ci.org/JeffFessler/ConstantArrays.jl.svg?branch=master
+[travis-url]: https://travis-ci.org/JeffFessler/ConstantArrays.jl
+[codecov-img]: https://codecov.io/github/JeffFessler/ConstantArrays.jl/coverage.svg?branch=master
+[codecov-url]: https://codecov.io/github/JeffFessler/ConstantArrays.jl?branch=master
+[coveralls-img]: https://coveralls.io/repos/JeffFessler/ConstantArrays.jl/badge.svg?branch=master
+[coveralls-url]: https://coveralls.io/github/JeffFessler/ConstantArrays.jl?branch=master
