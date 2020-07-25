@@ -18,6 +18,7 @@ using Test: @test, @testset, @test_throws, @inferred
     @test size(x,1) == dim[1]
     @test size(x,2) == dim[2]
     @test eltype(x) == eltype(val)
+    @test eltype(typeof(x)) == eltype(val)
     @test length(x) == prod(dim)
     @test axes(x) == axes(ones(dim))
     @test x .* ones(dim) == fill(val, dim)
