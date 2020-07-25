@@ -24,6 +24,11 @@ using Test: @test, @testset, @test_throws, @inferred
     @test vec(x) == fill(val, prod(dim))
     @test [v for v in x] == fill(val, prod(dim)) # iterator
 
+	@test Base.IteratorSize(typeof(x)) == Base.HasLength()
+	@test Base.IteratorEltype(typeof(x)) == typeof(val)
+	@test Base.IndexStyle(typeof(x)) == IndexLinear()
+	@test Base.firstindex(x) == 1
+
     z = @inferred copy(x)
     @test z === x # !
 

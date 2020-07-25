@@ -56,7 +56,7 @@ end
 
 Base.firstindex(::ConstantArray) = 1
 Base.lastindex(x::ConstantArray) = prod(x.dim)
-Base.IndexStyle(::Type{<:ConstantArray{T,N}}) where {T,N} =  IndexLinear()
+Base.IndexStyle(::Type{<:ConstantArray{T,N}}) where {T,N} = IndexLinear()
 #Base.iterate(x::ConstantArray, args...) = iterate(x.value, args...)
 Base.length(x::ConstantArray) = prod(x.dim)
 
