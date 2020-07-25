@@ -10,6 +10,11 @@ https://github.com/JeffFessler/ConstantArrays.jl
 A Julia data type that is a subtype of `AbstractArray`
 where every element is the same constant.
 
+The "constant" in the name has two meaning:
+every element of the array has the same constant value,
+and the array is immutable
+(`setindex!` is unsupported).
+
 ### Installation
 
 At the Julia REPL run:
@@ -42,7 +47,9 @@ because one could accomplish something similar
 using `Diagonal(ones(N))`
 but `I` requires much less memory.
 
-Developed by Jeff Fessler at the University of Michigan.
+Developed by Jeff Fessler at the University of Michigan,
+with some inspiration from
+[ReadOnlyArrays.jl](https://github.com/bkamins/ReadOnlyArrays.jl).
 
 
 <!-- URLs -->
