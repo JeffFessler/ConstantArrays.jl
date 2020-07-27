@@ -3,7 +3,7 @@ ConstantArrays.jl
 
 [![Build Status][travis-img]][travis-url]
 [![Codecov.io][codecov-img]][codecov-url]
-[![Coveralls][coveralls-img]][coveralls-url]
+<!-- [![Coveralls][coveralls-img]][coveralls-url] -->
 
 https://github.com/JeffFessler/ConstantArrays.jl
 
