@@ -25,10 +25,11 @@ using Test: @test, @testset, @test_throws, @inferred
     @test vec(x) == fill(val, prod(dim))
     @test [v for v in x] == fill(val, prod(dim)) # iterator
 
-	@test Base.IteratorSize(typeof(x)) == Base.HasLength()
-	@test Base.IteratorEltype(typeof(x)) == typeof(val)
-	@test Base.IndexStyle(typeof(x)) == IndexLinear()
-	@test Base.firstindex(x) == 1
+    @test Base.IteratorSize(typeof(x)) == Base.HasLength()
+    @test Base.IteratorEltype(typeof(x)) == typeof(val)
+    @test Base.IndexStyle(typeof(x)) == IndexLinear()
+    @test Base.firstindex(x) == 1
+    @test Base.lastindex(x) == prod(dim)
 
     z = @inferred copy(x)
     @test z === x # !
@@ -39,13 +40,13 @@ using Test: @test, @testset, @test_throws, @inferred
     mask = @inferred ConstantArray(dim)
     @test eltype(mask) == Bool
 
-	z = rand(dim...)
-	@test z[mask] == vec(z)
+    z = rand(dim...)
+    @test z[mask] == vec(z)
 
-	dim = (2^9,2^8)
+    dim = (2^9,2^8)
     mask = @inferred ConstantArray(dim)
-	x = rand(dim...)
-	y = similar(vec(x))
-	@test getindex!(y, x, mask) == vec(x)
-	@test 100 > @allocated getindex!(y, x, mask)
+    x = rand(dim...)
+    y = similar(vec(x))
+    @test getindex!(y, x, mask) == vec(x)
+    @test 100 > @allocated getindex!(y, x, mask)
 end
