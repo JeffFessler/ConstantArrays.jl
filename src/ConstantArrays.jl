@@ -1,6 +1,6 @@
 module ConstantArrays
 
-export ConstantArray
+export ConstantArray, getindex!
 
 """
     ConstantArray{T,D} <: AbstractArray{T,D}
@@ -74,5 +74,25 @@ Base.axes(x::ConstantArray) = ntuple(i -> Base.OneTo(x.dim[i]), length(x.dim))
 Ensure that `x[mask]` is efficient.
 """
 Base.getindex(x::AbstractArray{T,D}, mask::ConstantArray{Bool,D}) where {T,D} = vec(x)
+
+
+"""
+    getindex!(y::AbstractVector, x::AbstractArray{T,D}, mask::ConstantArray{Bool,D})
+Equivalent to the in-place `y .= x[mask]` but is non-allocating.
+
+For non-Boolean indexing, just use `@views y .= A[index]`, per
+https://discourse.julialang.org/t/efficient-non-allocating-in-place-getindex-for-bitarray/42268
+"""
+@inline function getindex!(
+    y::AbstractVector,
+    x::AbstractArray{T,D},
+    mask::ConstantArray{Bool,D},
+) where {T,D}
+    axes(y) == (Base.OneTo(length(mask)),) || throw("y axes $(axes(y))")
+    axes(mask) == axes(x) || throw(DimensionMismatch("x vs mask"))
+	mask[1] == true || fail("only valid for mask with trues")
+	y .= vec(x)
+    return y
+end
 
 end # module

@@ -41,4 +41,11 @@ using Test: @test, @testset, @test_throws, @inferred
 
 	z = rand(dim...)
 	@test z[mask] == vec(z)
+
+	dim = (2^9,2^8)
+    mask = @inferred ConstantArray(dim)
+	x = rand(dim...)
+	y = similar(vec(x))
+	@test getindex!(y, x, mask) == vec(x)
+	@test 100 > @allocated getindex!(y, x, mask)
 end
