@@ -90,8 +90,8 @@ https://discourse.julialang.org/t/efficient-non-allocating-in-place-getindex-for
 ) where {T,D}
     axes(y) == (Base.OneTo(length(mask)),) || throw("y axes $(axes(y))")
     axes(mask) == axes(x) || throw(DimensionMismatch("x vs mask"))
-	mask[1] == true || fail("only valid for mask with trues")
-	y .= vec(x)
+    mask[1] == true || fail("only valid for mask with trues")
+    y .= vec(x)
     return y
 end
 
