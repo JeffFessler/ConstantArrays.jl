@@ -3,6 +3,19 @@ module ConstantArrays
 export ConstantArray
 
 """
+    ConstantArray{T,D} <: AbstractArray{T,D}
+- `value::T`
+- `dim::Dims{D}`
+"""
+struct ConstantArray{T,D} <: AbstractArray{T,D}
+    value::T
+    dim::Dims{D}
+    ConstantArray(value::T, dim::Dims{D}) where {T,D} =
+        new{T, D}(value, dim)
+end
+
+
+"""
     ConstantArray(value, dim::Dims)
     ConstantArray(dim::Dims) (default value=1)
 
@@ -17,7 +30,7 @@ The `setindex!` operation is not allowed for `ConstantArray`
 ```jldoctest
 julia> x = ConstantArray(7, (2,3))
 2×3 ConstantArray{Int64,2}:
- 7  2  7
+ 7  7  7
  7  7  7
 
 julia> x[1]
@@ -28,13 +41,6 @@ ERROR: setindex! not defined for ConstantArray{Int64,2}
 [...]
 ```
 """
-struct ConstantArray{T,D} <: AbstractArray{T,D}
-    value::T
-    dim::Dims{D}
-    ConstantArray(value::T, dim::Dims{D}) where {T,D} =
-        new{T, D}(value, dim)
-end
-
 ConstantArray(dim::Dims{D}) where {D} = ConstantArray(one(Bool), dim)
 
 Base.IteratorSize(::Type{<:ConstantArray{T,N}}) where {T,N} = Base.HasLength()
@@ -61,5 +67,12 @@ Base.IndexStyle(::Type{<:ConstantArray{T,N}}) where {T,N} = IndexLinear()
 Base.length(x::ConstantArray) = prod(x.dim)
 
 Base.axes(x::ConstantArray) = ntuple(i -> Base.OneTo(x.dim[i]), length(x.dim))
+
+"""
+    getindex(x::AbstractArray{T,D}, mask::ConstantArray{Bool,D})
+
+Ensure that `x[mask]` is efficient.
+"""
+Base.getindex(x::AbstractArray{T,D}, mask::ConstantArray{Bool,D}) where {T,D} = vec(x)
 
 end # module
