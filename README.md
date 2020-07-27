@@ -57,6 +57,18 @@ arguably `ConstantArray` is non-essential, but
 `ConstantArray(true, (100,100,100))` uses about a million times
 less memory than `trues(100,100,100)`.
 
+A better analogy might be a sparse array,
+where only the nonzero values are stored
+to save memory.
+A `ConstantArray` needs only to store only a single value.
+
+The most useful operations are probably
+`x .* y`
+and `y[x]`,
+both of which are faster
+with a `ConstantArray`
+than with `trues(dim)`.
+
 Developed by Jeff Fessler at the University of Michigan,
 with some inspiration from
 [ReadOnlyArrays.jl](https://github.com/bkamins/ReadOnlyArrays.jl).
