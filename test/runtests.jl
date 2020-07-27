@@ -36,6 +36,9 @@ using Test: @test, @testset, @test_throws, @inferred
     @test_throws BoundsError x[0]
     @test_throws BoundsError x[end+1]
 
-    y = @inferred ConstantArray(dim)
-    @test eltype(y) == Bool
+    mask = @inferred ConstantArray(dim)
+    @test eltype(mask) == Bool
+
+	z = rand(dim...)
+	@test z[mask] == vec(z)
 end
