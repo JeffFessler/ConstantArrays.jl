@@ -15,6 +15,14 @@ every element of the array has the same constant value,
 and the array is immutable
 (`setindex!` is unsupported).
 
+### Caution
+
+This package may be a subset of the existing
+https://github.com/JuliaArrays/FillArrays.jl
+(that I did not know about when I wrote it).
+So I may end up deleting it
+after I do a bit more testing and benchmarking to confirm.
+
 ### Installation
 
 At the Julia REPL run:
