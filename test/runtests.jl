@@ -6,6 +6,8 @@ using Test: @test, @testset, @test_throws, @inferred
     val = 7
     x = @inferred ConstantArray(val, dim)
 
+    show(isinteractive() ? stdout : devnull, MIME("text/plain"), x)
+
     # getindex:
     @test x[1] == val
     @test x[end] == val

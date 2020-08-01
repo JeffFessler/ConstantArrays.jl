@@ -73,7 +73,8 @@ Base.axes(x::ConstantArray) = ntuple(i -> Base.OneTo(x.dim[i]), length(x.dim))
 
 Ensure that `x[mask]` is efficient.
 """
-Base.getindex(x::AbstractArray{T,D}, mask::ConstantArray{Bool,D}) where {T,D} = vec(x)
+Base.getindex(x::AbstractArray{T,D}, mask::ConstantArray{Bool,D}) where {T,D} =
+mask.value ? vec(x) : ones(T, 0)
 
 
 """
@@ -93,6 +94,19 @@ https://discourse.julialang.org/t/efficient-non-allocating-in-place-getindex-for
     mask[1] == true || fail("only valid for mask with trues")
     y .= vec(x)
     return y
+end
+
+
+"""
+    show(io::IO, x::ConstantArray)
+    show(io::IO, ::MIME"text/plain", x::ConstantArray)
+Concise description.
+"""
+Base.show(io::IO, x::ConstantArray) =
+    print(io, "$(summary(x)) = $(x.value)")
+
+function Base.show(io::IO, ::MIME"text/plain", x::ConstantArray)
+    show(io, x)
 end
 
 end # module
