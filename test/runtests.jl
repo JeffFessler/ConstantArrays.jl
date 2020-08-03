@@ -34,7 +34,8 @@ using Test: @test, @testset, @test_throws, @inferred
     @test Base.lastindex(x) == prod(dim)
 
     z = @inferred copy(x)
-    @test z === x # !
+    @test z === x # ! (because isbitstype(ConstantArray{T,D}) is true)
+	@test isbits(x)
 
     @test_throws BoundsError x[0]
     @test_throws BoundsError x[end+1]

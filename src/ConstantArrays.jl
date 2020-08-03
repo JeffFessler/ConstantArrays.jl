@@ -49,7 +49,7 @@ Base.eltype(::Type{<:ConstantArray{T,N}}) where {T,N} = T
 Base.size(x::ConstantArray) = x.dim
 Base.size(x::ConstantArray, args...) = x.dim[args...]
 
-# this seems ok because dim tuple is immutable:
+# probably pointless because isbitstype(ConstantArray{T,D}) is true:
 Base.copy(x::ConstantArray) = ConstantArray(x.value, x.dim)
 
 Base.@propagate_inbounds function Base.getindex(x::ConstantArray, i::Int)
