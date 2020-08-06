@@ -156,4 +156,5 @@ v = FFTView(collect(1:8))
 v[:] # works fine
 v[trues(8)]
 # ERROR: BoundsError: attempt to access 8-element FFTView{Int64,1,Array{Int64,1}} with indices FFTViews.URange(0,7) at index [Bool[1, 1, 1, 1, 1, 1, 1, 1]]
+v[trues(8)] = zeros(8) # also fails
 =#
