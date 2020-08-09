@@ -79,11 +79,6 @@ if false
 	@btime setter!($y, $maskt, $x) # 2.0 ms :(
 end
 
-function masker_check()
-	@assert masker!(y, maskc, x) == masker!(y, maskf, x) ==
-		masker!(y, mask0, x) == x
-end
-
 
 # x[mask]
 # FillArrays is even slower than base here; it needs an appropriate getindex
@@ -93,6 +88,12 @@ if false
 	@btime getter($mask0, $x) # 1.4 ms 2 alloc 8MiB
 	@btime getter($maskc, $x) # 28 ns 2 alloc 80 -> 2.2 ms in 1.5 !?
 	@btime getter($maskf, $x) # 1.8 ms 2 alloc 8MiB
+end
+
+
+function masker_check()
+	@assert masker!(y, maskc, x) == masker!(y, maskf, x) ==
+		masker!(y, mask0, x) == x
 end
 
 if true
