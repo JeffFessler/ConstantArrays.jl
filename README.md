@@ -18,7 +18,7 @@ and the array is immutable
 # Caution: This Package No Longer Maintained!
 
 This package is now a subset of the existing
-[https://github.com/JuliaArrays/FillArrays.jl](FillArrays.jl)
+[FillArrays.jl](https://github.com/JuliaArrays/FillArrays.jl)
 package
 (that I did not know about when I wrote it).
 My original version had a extra couple features
