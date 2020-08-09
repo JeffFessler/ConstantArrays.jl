@@ -15,13 +15,16 @@ every element of the array has the same constant value,
 and the array is immutable
 (`setindex!` is unsupported).
 
-### Caution
+# Caution: This Package No Longer Maintained!
 
-This package may be a subset of the existing
-https://github.com/JuliaArrays/FillArrays.jl
+This package is now a subset of the existing
+[https://github.com/JuliaArrays/FillArrays.jl](FillArrays.jl)
+package
 (that I did not know about when I wrote it).
-So I may end up deleting it
-after I do a bit more testing and benchmarking to confirm.
+My original version had a extra couple features
+but I contributed those to `FillArrays`.
+So now I will no longer maintain this package
+and I strongly recommend you use `FillArrays` instead.
 
 ### Installation
 
